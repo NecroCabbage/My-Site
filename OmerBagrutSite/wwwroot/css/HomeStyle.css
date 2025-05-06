@@ -1,0 +1,113 @@
+﻿body 
+{
+margin: 0;
+padding: 0;
+background-color: #f8f8f8;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.hero {
+    background-color: #2e7d32;
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+}
+
+.hero h1
+{
+    font-size: 42px;
+    margin-bottom: 10px;
+    padding-top: 5px;
+}
+
+.hero p 
+{
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.content-wrapper {
+    /*old static styling*/
+    /*    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 30px;*/
+    /*new responsive styling*/
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 40px 20px;
+    justify-items: center;
+}
+
+.card {
+    /*   background-color: white;
+    width: 300px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;*/
+   
+    width: 90%;
+    min-width:300px;
+
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover
+{
+    transform: scale(1.03);
+}
+
+.card img
+{
+    width: 100%;
+    min-height: 180px;
+    max-height:300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.card h2
+{
+    color: #2e7d32;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.card p 
+{
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.tip-box ul
+{
+    list-style: none;
+    padding: 0;
+    font-size: 15px;
+}
+
+.tip-box li 
+{
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.footer 
+{
+    background-color: #e0e0e0;
+    color: #555;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 13px;
+    margin-top: 40px;
+}

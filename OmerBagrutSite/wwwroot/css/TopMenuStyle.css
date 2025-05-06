@@ -1,0 +1,102 @@
+﻿html 
+{
+}
+
+@media (min-width: 768px) 
+{
+    html {
+        font-size: 14px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus 
+{
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+/* this is the style sheet*/
+
+body
+{
+    padding-top: 34.93px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+
+
+nav.TopBar {
+    font-size: 16px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+    display: flex;
+    background-color: black; /* Dark background */
+    position: fixed; /* Ensure it sits at the very top */
+    top: 0;
+    width: 100%; /* Ensure it spans the full width */
+    z-index: 1000; /* Keeps navbar above content */
+    align-items: center; /* Align items vertically within the navbar */
+    /*border-bottom: 1px solid white;*/
+}
+
+nav.TopBar > a /* Applies styles to all direct children of nav.TopBar */ 
+{
+    margin-left: 15px; /* Adds space between each menu item */
+    transition: color 0.3s ease, background-color 0.3s ease; /* To Smooth hover effect */
+    text-decoration: none; /* Remove underline from links */
+    color: snow; /* Default link color */
+    height: max-content;
+    padding: 8px 8px; /*decids the top and bottom padding amount*/
+    justify-content: center;
+
+}
+
+nav.TopBar > *:hover /*effects all items in topbar when hoverd on*/ 
+{
+    background-color: dimgrey; /* Add a subtle background effect on hover */
+    border-radius: 0px; /* Rounded corners for hover effect */
+}
+
+.login 
+{
+    background-color: #258cfb;
+    color: white;
+    border-radius: 5px;
+    margin-right: 4px;
+    /*font-size: 15px;
+    width: 42px;
+    height: 25px;
+    margin-left: auto;*/
+}
+
+.logout
+{
+    background-color: #ff0000;
+    color: white;
+    border-radius: 5px;
+    margin-right: 4px;
+    
+    /*height: 25px;
+    margin-left: auto;
+    width: 51px;
+    height: 25px;*/
+}
+
+.Welcome {
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*font-family:Impact;*/
+    color: snow;
+    font-size: 35px; /* Same as nav items */
+    font-weight: bold;
+    pointer-events: none;
+    text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+    .Welcome {
+        display: none;
+    }
+}

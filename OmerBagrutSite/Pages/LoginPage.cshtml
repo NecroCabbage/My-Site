@@ -1,0 +1,45 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@model OmerBagrutSite.Pages.LoginPageModel
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<link rel="stylesheet" href="~/css/RegisterStyle.css" ask-append-version="true" />
+<script src="~/js/Login.js"></script>
+
+<div class="register-form">
+    <h2>Log in</h2>
+
+    <form id="LoginForm" name="loginForm" method="post" onreset="resetForm();" onsubmit="validateLoginForm();">
+
+        @if (!string.IsNullOrEmpty(Model.errorMessage))
+        {
+            <div class="text-danger">@Model.errorMessage</div>
+        }
+        
+        <label asp-for="LoginEmail">Email:</label>
+        <input asp-for="LoginEmail" type="email" id="reg_mail" placeholder="xxx@gmail.com" oninput="checkEmail()" />
+        <div class="text-danger" id="reg_errormail"></div>
+
+        @* ---------------------------- *@
+
+        <label asp-for="LoginPassword">Password:</label>
+        <input asp-for="LoginPassword" type="password" id="reg_password" placeholder="Password" maxlength="15" />
+        
+        @* ---------------------------- *@
+
+        <div class="button-container">
+            <button type="reset" class="reset-button">↻</button>
+            <button type="submit" class="submit-button">Log in</button>
+        </div>
+
+        <a href="/RegisterPage" class="link">I dont have an account</a>
+
+        
+
+        @Html.AntiForgeryToken()
+    </form>
+</div>
+
+

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/TopMenuStyle.css" ask-append-version="true"   />
+    @* add this: <link rel="stylesheet" href="~/css/site.css" ask-append-version="true"/>  to link a style sheet to a page, in this case its linkin to my layout*@
+</head>
+
+<script>
+    setInterval(() => 
+    {
+      const d = new Date();
+      const time = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const date = `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`;document.getElementById("clock").innerText = `${time} | ${date}`;
+    }, 1000);
+</script>
+
+@* this is the layout for the top menu, it will be used in all pages that need a top menu !=*@
+<body>
+    <nav class="TopBar">
+        <a href="/Home">Home</a>  
+        <a href="/CalculatorPage">Calculator</a>
+        <a href="/GalleryPage">Gallery</a>
+     @*  <a href="/RegisterPage">Register</a> *@ @* currntly exeists in a link in the login *@
+     @* <a href="/ShowTbl">Users</a> *@  @* this is an old user table display  *@
+       
+        @{int? uid = Context.Session.GetInt32("UserId");}
+
+        @if (uid != null)
+        {
+            <a href="/UpdatePage" style="border-left: 2px dotted snow; padding-left: 20px;">Update</a>
+        }
+
+        @* only revels the admin and users page if your logged as the user with UserId=1 (thats me) *@
+        @if (uid == 1)
+        {
+            <a href="/AdminPage" style="color:darkred";>Admin</a>
+        }
+
+        <div class="Welcome">
+            @if (Context.Session.GetString("FirstName") != null)
+            {
+                <span>Welcome @Context.Session.GetString("FirstName")</span>
+            }
+        </div>
+       
+        <a id="clock" style="margin-left: auto; margin-right: 0px;"></a>
+
+        @if (Context.Session.GetString("FirstName") != null)
+        {
+            <a href="/LogoutPage" class="logout">Log Out</a>
+        }
+        else
+        {
+            <a href="/LoginPage" class="login">Log In</a>
+        }
+    </nav>
+    
+   @*  <div class="block">|</div> *@
+
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

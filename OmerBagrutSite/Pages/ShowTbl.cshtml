@@ -1,0 +1,39 @@
+﻿@page
+@model OmerBagrutSite.Pages.ShowTblModel
+@using System.Data;
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1>User Table</h1>
+<link rel="stylesheet" href="~/css/RegisterStyle.css" ask-append-version="true" />
+@if (Model.DataTableUsers != null && Model.DataTableUsers.Rows.Count > 0)
+{
+    <table border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+
+                @foreach (string column in Model.displayColumns)
+                {
+                    <th>@column</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (System.Data.DataRow row in Model.DataTableUsers.Rows)
+            {
+                <tr>
+                    @foreach (string column in Model.displayColumns)
+                    {
+                        <td>@row[column]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No data available to display.</p>
+}

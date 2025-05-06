@@ -1,0 +1,228 @@
+﻿@page
+@model OmerBagrutSite.Pages.RegisterPageModel
+
+@{
+    ViewData["Title"] = "Register Page";
+}
+<link rel="stylesheet" href="~/css/RegisterStyle.css" ask-append-version="true" />
+<script src="~/js/Register.js"></script>
+
+@* method - שיטת שליחת המידע שבטופס מהלקוח לשרת
+post - המידע מועבר בצורה מוסתרת, כזוגות נתונים: field = value
+get - המידע מועבר בצרה גלויה בשורת ה- URL (UniversalResource Locator) *@
+
+<div class="register-form"> @* remeber that if the javascript code isent executing it might just be a problem with googles cache so just hard reset and wipe cache *@
+    <h2>Register</h2>
+
+    <form method="post" asp-page-handler="Register" onsubmit="validateRegistgerForm()">
+
+        @if (!string.IsNullOrEmpty(Model.errorMessage))
+        {
+            <div class="text-danger">@Model.errorMessage</div>
+        }
+
+        <label asp-for="user.Username">Username:</label> @* add  class="label" later for style *@
+        <input asp-for="user.Username" type="text" id="reg_username" placeholder="Username" required />
+        
+        @* ---------------------------- *@
+     
+        <label asp-for="user.Password">Password:</label>
+        <input asp-for="user.Password" type="password" id="reg_password" placeholder="Password" maxlength="15" oninput="checkPassword()" />
+        <div class="text-danger" id="reg_errorpassword"></div>
+        
+        @* ---------------------------- *@
+
+        <label for="reg_verifypassword">Verify Password</label>
+        <input type="password" id="reg_verifypassword" maxlength="15" placeholder="verify password" oninput="checkVerifyPassword()">
+        <div class="text-danger" id="reg_errorverifypassword"></div>
+
+        @* ---------------------------- *@
+       
+        <label asp-for="user.BirthYear">Year Of Birth:</label> @* the: for="reg_birthyear", is not necessary it justs links the label to the input doesn't do anything in this case but its good practice to have it *@
+        <input asp-for="user.BirthYear" type="number" id="reg_birthyear" placeholder="Birth Year" min="1900" oninput="checkBirthYear()" /> @* required <-- can add this to make it required to answer*@
+        <div class="text-danger" id="reg_errorbirthyear"></div> @*place for error to apear when the input is invaild*@
+
+        @* ---------------------------- *@
+
+        <label asp-for="user.City">City:</label>
+        <input asp-for="user.City" type="text" id="reg_city" placeholder="City" required />
+
+        @* this is city select but as a drop list if i ever want it: *@
+        <div>
+@*       <label asp-for="City">City:</label>
+        <select asp-for="City" id="reg_city" name="city">
+            <option value="">Select a city</option>
+            <option value="Jerusalem">Jerusalem</option>
+            <option value="Tel Aviv">Tel Aviv</option>
+            <option value="Ramat Hasharon">Ramat Hasharon</option>
+            <option value="Haifa">Haifa</option>
+            <option value="Be'er Sheva">Be'er Sheva</option>
+            <option value="Netanya">Netanya</option>
+            <option value="Rishon LeZion">Rishon LeZion</option>
+            <option value="Ashdod">Ashdod</option>
+            <option value="Petah Tikva">Petah Tikva</option>
+            <option value="Holon">Holon</option>
+            <option value="Bnei Brak">Bnei Brak</option>
+            <option value="Bat Yam">Bat Yam</option>
+            <option value="Ashkelon">Ashkelon</option>
+            <option value="Herzliya">Herzliya</option>
+            <option value="Kfar Saba">Kfar Saba</option>
+            <option value="Ramat Gan">Ramat Gan</option>
+            <option value="Rehovot">Rehovot</option>
+            <option value="Raanana">Raanana</option>
+            <option value="Eilat">Eilat</option>
+            <option value="Tiberias">Tiberias</option>
+            <option value="Nahariya">Nahariya</option>
+            <option value="Acre">Acre</option>
+            <option value="Safed">Safed</option>
+            <option value="Kiryat Gat">Kiryat Gat</option>
+            <option value="Kiryat Motzkin">Kiryat Motzkin</option>
+            <option value="Lod">Lod</option>
+            <option value="Ramla">Ramla</option>
+            <option value="Hadera">Hadera</option>
+            <option value="Modiin">Modiin</option>
+            <option value="Beit Shemesh">Beit Shemesh</option>
+            <option value="Yavne">Yavne</option>
+        </select> *@
+        </div>
+        
+        @* ---------------------------- *@
+
+        @* i changed the error messege about to a div instead of a span so the error messege above dosent go into the same line as the label
+        here but you can also just put a div around the label and select to get the same result with a span error messege above *@
+        
+        <label asp-for="user.FavoritePasta">Favorite Pasta:</label>
+        <select asp-for="user.FavoritePasta" id="reg_pasta" >
+            <option value="" disabled>Select your favorite pasta</option>
+            <option value="Abissini">Abissini</option>
+            <option value="Mussolini">Mussolini</option>
+            <option value="Agnolotti">Agnolotti</option>
+            <option value="Alphabet pasta">Alphabet pasta</option>
+            <option value="Anelli">Anelli</option>
+            <option value="Anellini">Anellini</option>
+            <option value="Bavette">Bavette</option>
+            <option value="Bigoli">Bigoli</option>
+            <option value="Boccoli">Boccoli</option>
+            <option value="Bucatini">Bucatini</option>
+            <option value="Busiate">Busiate</option>
+            <option value="Calamarata">Calamarata</option>
+            <option value="Campanelle">Campanelle</option>
+            <option value="Candele">Candele</option>
+            <option value="Cannelloni">Cannelloni</option>
+            <option value="Capelli d'angelo">Capelli d'angelo</option>
+            <option value="Capunti">Capunti</option>
+            <option value="Caramelle">Caramelle</option>
+            <option value="Casarecce">Casarecce</option>
+            <option value="Castellane">Castellane</option>
+            <option value="Cavatappi">Cavatappi</option>
+            <option value="Cavatelli">Cavatelli</option>
+            <option value="Cellentani">Cellentani</option>
+            <option value="Conchiglie">Conchiglie</option>
+            <option value="Conchigliette">Conchigliette</option>
+            <option value="Corallini">Corallini</option>
+            <option value="Creste di gallo">Creste di gallo</option>
+            <option value="Ditalini">Ditalini</option>
+            <option value="Elicoidali">Elicoidali</option>
+            <option value="Fagottini">Fagottini</option>
+            <option value="Farfalle">Farfalle</option>
+            <option value="Fazzoletti">Fazzoletti</option>
+            <option value="Fettuccine">Fettuccine</option>
+            <option value="Fideuà">Fideuà</option>
+            <option value="Filini">Filini</option>
+            <option value="Fiori">Fiori</option>
+            <option value="Fiorentini">Fiorentini</option>
+            <option value="Fregula">Fregula</option>
+            <option value="Fusilli">Fusilli</option>
+            <option value="Gemelli">Gemelli</option>
+            <option value="Gigli">Gigli</option>
+            <option value="Gnocchi">Gnocchi</option>
+            <option value="Gramigna">Gramigna</option>
+            <option value="Lasagna">Lasagna</option>
+            <option value="Lasagnette">Lasagnette</option>
+            <option value="Lasagnotte">Lasagnotte</option>
+            <option value="Linguine">Linguine</option>
+            <option value="Lorighittas">Lorighittas</option>
+            <option value="Macaroni">Macaroni</option>
+            <option value="Mafaldine">Mafaldine</option>
+            <option value="Malloreddus">Malloreddus</option>
+            <option value="Manicotti">Manicotti</option>
+            <option value="Mezze penne">Mezze penne</option>
+            <option value="Mezzi rigatoni">Mezzi rigatoni</option>
+            <option value="Orecchiette">Orecchiette</option>
+            <option value="Orzo">Orzo</option>
+            <option value="Paccheri">Paccheri</option>
+            <option value="Pappardelle">Pappardelle</option>
+            <option value="Passatelli">Passatelli</option>
+            <option value="Penne">Penne</option>
+            <option value="Pennoni">Pennoni</option>
+            <option value="Perciatelli">Perciatelli</option>
+            <option value="Pici">Pici</option>
+            <option value="Pipe">Pipe</option>
+            <option value="Radiatori">Radiatori</option>
+            <option value="Ravioli">Ravioli</option>
+            <option value="Ricciutelle">Ricciutelle</option>
+            <option value="Rigatoni">Rigatoni</option>
+            <option value="Rotelle">Rotelle</option>
+            <option value="Rotini">Rotini</option>
+            <option value="Sagnarelli">Sagnarelli</option>
+            <option value="Scialatielli">Scialatielli</option>
+            <option value="Sedani">Sedani</option>
+            <option value="Spaghetti">Spaghetti</option>
+            <option value="Spaghettini">Spaghettini</option>
+            <option value="Stelline">Stelline</option>
+            <option value="Strozzapreti">Strozzapreti</option>
+            <option value="Tagliatelle">Tagliatelle</option>
+            <option value="Taglierini">Taglierini</option>
+            <option value="Tortellini">Tortellini</option>
+            <option value="Tortelli">Tortelli</option>
+            <option value="Tortiglioni">Tortiglioni</option>
+            <option value="Trenette">Trenette</option>
+            <option value="Trofie">Trofie</option>
+            <option value="Vermicelli">Vermicelli</option>
+            <option value="Ziti">Ziti</option>
+        </select>
+
+        @* ---------------------------- *@
+
+        <label asp-for="user.Email">Email:</label>
+        <input asp-for="user.Email" type="email" id="reg_mail" placeholder="xxx@gmail.com" oninput="checkEmail()" />@*  you can put: oninput="checkEmail()", here so it checks it immediately as something is inputed instead of just when the page is submitted! *@
+        <div class="text-danger" id="reg_errormail"></div>
+
+        @* ---------------------------- *@
+
+        <label asp-for="user.PhoneNumber">Phone Number:</label>
+        <input asp-for="user.PhoneNumber" type="tel" id="reg_phone" placeholder="+X-XXX-XXX-XXXX" oninput="checkPhoneNumber()" />
+        <div class="text-danger" id="reg_errorphone"></div> 
+
+        @* ---------------------------- *@
+
+        <label asp-for="user.FirstName">First Name:</label>
+        <input asp-for="user.FirstName" type="text" id="reg_firstname" oninput="checkFirstName()" />
+        <div class="text-danger" id="reg_errorfirstname"></div>
+
+        @* ---------------------------- *@
+
+        <label asp-for="user.LastName">Last Name:</label>
+        <input asp-for="user.LastName" type="text" id="reg_lastname" oninput="checkLastName()" />
+        <div class="text-danger" id="reg_errorlastname"></div>
+
+        @* ---------------------------- *@
+
+        <label>Gender:</label> 
+        <div class="radio-grid" id="reg_gender">
+            <label><input asp-for="user.Gender" type="radio" name="user.Gender" value="Male" oninput="checkGender()" /> Male </label>
+            <label><input asp-for="user.Gender" type="radio" name="user.Gender" value="Female" oninput="checkGender()" /> Female </label>
+            <label><input asp-for="user.Gender" type="radio" name="user.Gender" value="Velociraptor" oninput="checkGender()" /> Velociraptor </label>         
+        </div>
+        <div class="text-danger" id="reg_errorgender"></div>
+        <br /> 
+
+        @* ----------------------------*@
+        <div class="button-container">
+            <button type="reset" class="reset-button">↻</button>
+            <button type="submit" class="submit-button">Submit</button>
+        </div>
+    </form>
+</div>
+
+

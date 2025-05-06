@@ -1,0 +1,35 @@
+﻿@page
+@model OmerBagrutSite.Pages.GalleryPageModel
+@{
+}
+<link rel="stylesheet" href="~/css/GalleryStyle.css" ask-append-version="true" />
+<script src="~/js/Gallery.js"></script>
+
+<h2 style="text-align: center; color:black;">Car Gallery:</h2>
+
+<div class="gallery-grid">
+    @{
+        int index = 1;
+        for (int row = 0; row < 4; row++)
+        {
+            for (int col = 0; col < 4; col++)
+            {
+                bool isCenter = row >= 1 && row <= 2 && col >= 1 && col <= 2;
+                if (isCenter)
+                {
+                    if (row == 1 && col == 1) 
+                    {
+                        <div class="big-image" colspan="2" rowspan="2">
+                            <img id="main" src="~/Images/pic1.jpg" />
+                        </div>
+                    }
+                }
+                else
+                {
+                    <img src="~/Images/@($"pic{index}.jpg")" class="thumb" onmouseover="updateMain(this)" />
+                    index++;
+                }
+            }
+        }
+    }
+</div>

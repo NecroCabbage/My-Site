@@ -1,0 +1,24 @@
+﻿@page
+@model OmerBagrutSite.Pages.CalculatorPageModel
+@{
+    ViewData["Title"] = "Calculator";
+}
+
+<script src="~/js/Calculator.js"></script>
+<link rel="stylesheet" href="~/css/RegisterStyle.css" ask-append-version="true" />
+
+
+
+<form class ="register-form">
+    <h2>Math stuff:</h2>
+    <div><span class="result"></span> <span class="question-text"></span> = <input type="number" class="userAnswer"></div>
+    <div><span class="result"></span> <span class="question-text"></span> = <input type="number" class="userAnswer"></div>
+    <div><span class="result"></span> <span class="question-text"></span> = <input type="number" class="userAnswer"></div>
+    <div><span class="result"></span> <span class="question-text"></span> = <input type="number" class="userAnswer"></div>
+    <div><span class="result"></span> <span class="question-text"></span> = <input type="number" class="userAnswer"></div>
+    <div><span class="result"></span> <span class="question-text"></span> = <input type="number" class="userAnswer"></div>
+
+    <div class="button-container">
+        <button type="button" class="submit-button" onclick="checkAnswers()">Submit</button>
+    </div>
+</form>
