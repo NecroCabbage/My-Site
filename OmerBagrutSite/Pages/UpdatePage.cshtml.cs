@@ -43,6 +43,16 @@ namespace OmerBagrutSite.Pages
 
             DBHelper db = new DBHelper();
 
+            // Admin is allowed to update another user (via hidden input), otherwise regular user updates self
+            if (userId == 1 && user.UserId != 0)
+            {
+                userId = user.UserId;
+            }
+            else
+            {
+                user.UserId = userId;
+            }
+
             //Check if email exists but NOT for the current user
             string sql = $"SELECT * FROM UserTbl WHERE Email = '{user.Email}' AND UserId <> {userId}";
             if (db.Find(sql))
@@ -58,18 +68,5 @@ namespace OmerBagrutSite.Pages
             return Page();
         }
 
-        //public IActionResult OnPost()
-        //{
-        //    DBHelper dB = new DBHelper();
-        //    int numRowsAffected = dB.Insert(user, Utils.DB_USERS_TABLE);
-
-        //    if (numRowsAffected != 1)
-        //    {
-        //        errorMessage = "This email is already registered"; //not shure where to put this to actually show it
-        //        return Page(); // stay on this page
-        //    }
-
-        //    return RedirectToPage("/LoginPage"); // go to main page
-        //}
     }
 }

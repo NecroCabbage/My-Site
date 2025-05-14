@@ -12,6 +12,8 @@
 
     <form method="post" onsubmit="validateRegistgerForm()">
         
+        <input type="hidden" asp-for="user.UserId" />
+        
         @if (!string.IsNullOrEmpty(Model.errorMessage))
         {
             <div class="text-danger">@Model.errorMessage</div>

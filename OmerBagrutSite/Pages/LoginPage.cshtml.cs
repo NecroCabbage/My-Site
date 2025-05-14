@@ -11,23 +11,6 @@ namespace OmerBagrutSite.Pages
         {
         }
 
-        // Old code for login just returns bool no user data and uses login function in the dbhelper
-        //public IActionResult OnPost()
-        //{
-        //    DBHelper db = new DBHelper();
-
-        //    bool isValid = db.Login(LoginEmail, LoginPassword);
-
-        //    if (isValid)
-        //    {
-        //        HttpContext.Session.SetString("user", LoginEmail); // Save session
-        //        return RedirectToPage("/CalculatorPage");
-        //    }
-
-        //    errorMessage = "Invalid email or password.";
-        //    return Page();
-        //}
-
         public string errorMessage = "";
 
         [BindProperty] public string LoginEmail { get; set; } 
