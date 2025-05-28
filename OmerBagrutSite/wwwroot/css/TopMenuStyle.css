@@ -40,7 +40,7 @@ nav.TopBar {
 
 nav.TopBar > a /* Applies styles to all direct children of nav.TopBar */ 
 {
-    margin-left: 15px; /* Adds space between each menu item */
+    margin-left: 10px; /* Adds space between each menu item */
     transition: color 0.3s ease, background-color 0.3s ease; /* To Smooth hover effect */
     text-decoration: none; /* Remove underline from links */
     color: snow; /* Default link color */
