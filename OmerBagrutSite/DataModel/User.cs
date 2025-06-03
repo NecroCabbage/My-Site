@@ -24,6 +24,7 @@
 
         public string FavoritePasta { get; set; } = string.Empty;
 
+        public bool IsAdmin { get; set; } = false;
 
     }
 }

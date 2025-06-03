@@ -38,8 +38,10 @@ namespace OmerBagrutSite.Pages
             HttpContext.Session.SetString("FirstName", row["FirstName"].ToString());
             HttpContext.Session.SetString("LastName", row["LastName"].ToString());
             HttpContext.Session.SetInt32("UserId", Convert.ToInt32(row["UserId"]));
-           
-            return RedirectToPage("/CalculatorPage");
+            HttpContext.Session.SetInt32("IsAdmin", Convert.ToInt32(row["IsAdmin"]));
+
+
+            return RedirectToPage("/Home");
         }
 
     }

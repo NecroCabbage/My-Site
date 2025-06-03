@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="App_Data\dbo.UserTbl.sql" />
     <Content Include="App_Data\OmerBagrutSiteDB.mdf" />
     <Content Include="App_Data\OmerBagrutSiteDB_log.ldf" />
   </ItemGroup>

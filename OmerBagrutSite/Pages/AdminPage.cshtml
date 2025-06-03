@@ -14,6 +14,7 @@
         <input asp-for="FilterValue" placeholder="Enter value..." />
 
         <select asp-for="FilterColumn">
+            <option value="IsAdmin">Admin</option>
             <option value="UserId">UserId</option>
             <option value="Username">Username</option>
             @* <option value="Password">Password</option> *@
@@ -28,7 +29,8 @@
         </select>
 
         <label asp-for="SortColumn">Sort by:</label>
-        <select asp-for="SortColumn">
+        <select asp-for="SortColumn"> 
+            <option value="IsAdmin">Admin</option>
             <option value="UserId">UserId</option>
             <option value="Username">Username</option>
             @* <option value="Password">Password</option> *@
@@ -66,28 +68,42 @@
         <th>Gender</th>
         <th>Favorite Pasta</th>
     </tr>
-    @foreach (var u in Model.Users)
+    @foreach (var user in Model.Users)
     {
         <tr>
-            @* <td><a asp-page="UpdatePage" asp-route-id="@u.UserId">Update</a></td> *@
+            @* <td><a asp-page="UpdatePage" asp-route-id="@user.UserId">Update</a></td> *@
             <td>
                 <form method="get" asp-page="/UpdatePage">
-                    <input type="hidden" name="id" value="@u.UserId" />
-                    <button type="submit">Update</button>
+                    <input type="hidden" name="id" value="@user.UserId" />
+                    <button class="Update" type="submit">Update</button>
+                </form>
+                <form method="post" asp-page-handler="ToggleAdmin" onsubmit="return confirmWindow()">
+                    <input type="hidden" name="userId" value="@user.UserId" />
+                    <button type="submit"class="@(user.IsAdmin ? "Admin-On" : "Admin-Off")">
+                        @(user.IsAdmin ? "Admin ✓" : "Admin X")
+                    </button>
                 </form>
             </td>
 
-            <td>@u.UserId</td>
-            <td>@u.Username</td>
-            <td>@u.Email</td>
-            <td>@u.FirstName</td>
-            <td>@u.LastName</td>
-            <td>@u.City</td>
-            <td>@u.BirthYear</td>
-            <td>@u.Gender</td>
-            <td>@u.FavoritePasta</td>
+            <td>@user.UserId</td>
+            <td>@user.Username</td>
+            <td>@user.Email</td>
+            <td>@user.FirstName</td>
+            <td>@user.LastName</td>
+            <td>@user.City</td>
+            <td>@user.BirthYear</td>
+            <td>@user.Gender</td>
+            <td>@user.FavoritePasta</td>
         </tr>
     }
 </table>
+
+@* makes a cofirm window pop up when toggling admin status *@
+<script>
+    function confirmWindow() 
+    {
+        return confirm("Are you sure you want to change this user's admin status?");
+    }
+</script>
 
 <p>Total @Model.Users.Count users found.</p>

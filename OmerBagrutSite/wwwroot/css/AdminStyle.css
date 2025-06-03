@@ -55,7 +55,7 @@
 .admin-table td 
 {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 6px;
     text-align: center;
 }
 
@@ -71,4 +71,60 @@
     justify-content: center;
     gap: 4px; /* adds space between label, input, and button */
     align-items: center; /* aligns label with input vertically */
+}
+
+/*.admin-table button.Admin-On {
+    background-color: darkred !important;
+    color: white !important;
+    border-radius: 3px !important;
+    border: none !important;
+}
+
+.admin-table button.Admin-Off {
+    background-color: #007bff !important;
+    color: white !important;
+    border-radius: 3px !important;
+    border: none !important;
+}
+*/
+
+.Update,
+.Admin-On,
+.Admin-Off {
+    width: 68px;
+    height: 21px;
+    margin-top: 2px;
+    font-weight: bold;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    display: inline-block;
+    text-align: center;
+}
+
+.Update {
+    background-color: #28a745;
+    transition: background-color 0.2s;
+}
+
+.Update:hover {
+    background-color: #218838;
+}
+
+.Admin-On {
+    background-color: darkred;
+    transition: background-color 0.2s;
+}
+
+.Admin-On:hover {
+    background-color: #7c0000;
+}
+
+.Admin-Off {
+    background-color: #007bff;
+    transition: background-color 0.2s;
+}
+
+.Admin-Off:hover {
+    background-color: #0056b3;
 }

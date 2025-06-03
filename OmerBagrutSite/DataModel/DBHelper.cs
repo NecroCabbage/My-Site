@@ -82,6 +82,7 @@ namespace OmerBagrutSite.DataModel
             dr["Gender"] = user.Gender;
             dr["BirthYear"] = user.BirthYear;
             dr["FavoritePasta"] = user.FavoritePasta;
+            dr["IsAdmin"] = user.IsAdmin;
 
             dataSet.Tables[table].Rows.Add(dr);
 
@@ -123,6 +124,7 @@ namespace OmerBagrutSite.DataModel
 
             SQLStr += $"'{user.FavoritePasta}', ";
 
+            SQLStr += $"'{user.IsAdmin}', ";
 
             SqlCommand cmd = new SqlCommand(SQLStr, con);
 
@@ -266,14 +268,14 @@ namespace OmerBagrutSite.DataModel
                 $"LastName = '{user.LastName}', " +
                 $"Gender = '{user.Gender}', " +
                 $"FavoritePasta = '{user.FavoritePasta}', " +
-                //$"Birthday = '{user.Birthday:MM-dd-yyyy HH:mm:ss}' " +
+                $"IsAdmin = '{user.IsAdmin}', " +
                 $"WHERE UserId = {user.UserId} ";
             // TBD add the other fields !!!
             int numRowsEffected = ExecuteNonQuery(SQL);
             return numRowsEffected;
         }
 
-        public int UpdateAdmin(int userId, bool isAdmin)
+        public int UpdateAdmin(int userId, bool IsAdmin)
         {
             string sql = string.Empty;
             int numRowsEffected = 0;
@@ -284,9 +286,9 @@ namespace OmerBagrutSite.DataModel
 
             sql = string.Empty;
 
-            if (found && !isAdmin) // need to remove from admin list
+            if (found && !IsAdmin) // need to remove from admin list
                 sql = $"DELETE FROM AdminTbl WHERE UserID = {userId}";
-            else if (!found && isAdmin) // need to add to Admin list
+            else if (!found && IsAdmin) // need to add to Admin list
                 sql = $"INSERT INTO AdminTbl VALUES ({userId})";
 
             numRowsEffected = 0;
@@ -336,9 +338,8 @@ namespace OmerBagrutSite.DataModel
             dr["Gender"] = user.Gender;
             dr["BirthYear"] = user.BirthYear;
             //dr["Birthday"] = user.Birthday.ToString();
-            dr["FavoritePasta"] = user.FavoritePasta;
-          
-            //dr["isAdmin"] = user.isAdmin;
+            dr["FavoritePasta"] = user.FavoritePasta;         
+            dr["IsAdmin"] = user.IsAdmin;
 
             // עדכון הדאטה סט בבסיס הנתונים
             SqlCommandBuilder builder = new SqlCommandBuilder(adapter);

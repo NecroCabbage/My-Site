@@ -11,7 +11,7 @@ namespace OmerBagrutSite.Pages
         [BindProperty] public string FilterValue { get; set; } = string.Empty;
         [BindProperty] public string SortColumn { get; set; } = "UserId";
         [BindProperty] public int DeleteId { get; set; }
-
+        [BindProperty] public int IsAdmin { get; set; }
         public List<User> Users { get; set; } = new();
 
         public void OnPost()
@@ -40,10 +40,21 @@ namespace OmerBagrutSite.Pages
 
             return RedirectToPage();
         }
-        public IActionResult OnGet(int? id)
+        public IActionResult OnPostToggleAdmin(int userId)
         {
-            int userId = id ?? HttpContext.Session.GetInt32("UserId") ?? 0;
-            if (userId == 0)
+            DBHelper db = new DBHelper();
+            string sql = $"UPDATE UserTbl SET IsAdmin = IIF(IsAdmin = 1, 0, 1) WHERE UserId = {userId}";
+            db.ExecuteNonQuery(sql);
+
+            return RedirectToPage();
+        }
+
+        public IActionResult OnGet()
+        {
+
+            int? isAdmin = HttpContext.Session.GetInt32("IsAdmin");
+
+            if (isAdmin != 1)
             {
                 return RedirectToPage("/LoginPage");
             }
