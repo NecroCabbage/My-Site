@@ -184,18 +184,18 @@ function checkVerifyPassword()
     return true;
 }
 
-function checkGender()  /*this check is not necessary just a joke*/
-{
-    /*beacuse document.getElementsByName("gender") returns a sort of array genders[0] = Male, genders[1] = Female, genders[2] = Velociraptor */
+//function checkGender()  /*this check is not necessary just for practice*/
+//{
+//    /*beacuse document.getElementsByName("gender") returns a sort of array genders[0] = Male, genders[1] = Female, genders[2] = Velociraptor */
 
-    let genders = document.getElementsByName("user.Gender");
+//    let genders = document.getElementsByName("user.Gender");
 
-    // Check if "Male" or "Female" is selected
-    if (genders[0].checked || genders[1].checked) {
-        document.getElementById("reg_errorgender").innerText = "Incorrect";
-        return false;
-    }
+//    // Check if "Male" or "Female" is selected
+//    if (genders[0].checked || genders[1].checked) {
+//        document.getElementById("reg_errorgender").innerText = "Incorrect";
+//        return false;
+//    }
 
-    document.getElementById("reg_errorgender").innerText = "";
-    return true;
-}
+//    document.getElementById("reg_errorgender").innerText = "";
+//    return true;
+//}

@@ -5,7 +5,7 @@
 }
 <link rel="stylesheet" href="~/css/RegisterStyle.css" ask-append-version="true" />
 <script src="~/js/Register.js"></script>
-
+  
 <div class ="register-form">
 
     <h2>Update My Info</h2>
@@ -164,11 +164,11 @@
 
         @* ---------------------------- *@
 
-        <label>Gender:</label>
+        <label>Gender:</label> 
         <div class="radio-grid" id="reg_gender">
             <label><input asp-for="user.Gender" type="radio" name="user.Gender" value="Male" oninput="checkGender()" /> Male </label>
             <label><input asp-for="user.Gender" type="radio" name="user.Gender" value="Female" oninput="checkGender()" /> Female </label>
-            <label><input asp-for="user.Gender" type="radio" name="user.Gender" value="Velociraptor" oninput="checkGender()" /> Velociraptor </label>
+            <label><input asp-for="user.Gender" type="radio" name="user.Gender" value="Other" oninput="checkGender()" /> Other </label>
         </div>
         <div class="text-danger" id="reg_errorgender"></div>
         <br />
