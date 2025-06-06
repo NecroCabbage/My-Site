@@ -6,21 +6,23 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.hero {
+.title {
     background-color: midnightblue;
     color: white;
     text-align: center;
-    padding: 20px 20px;
+    padding: 1px 20px;
+  /*  margin-top: 1px;*/
 }
 
-.hero h1
+.title h1
 {
-    font-size: 60px;
-    margin-bottom: 10px;
-    padding-top: 5px;
+    font-size: 100px;
+    margin-bottom: 6px;
+    padding-top: 1px;
+
 }
 
-.hero p 
+.title p 
 {
     font-size: 18px;
     opacity: 0.9;
