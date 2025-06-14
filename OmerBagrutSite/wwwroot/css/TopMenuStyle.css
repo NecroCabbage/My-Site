@@ -29,7 +29,7 @@ nav.TopBar {
     font-size: 16px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
     display: flex;
-    background-color: seagreen; /* Dark background */
+    background-color: black; /* Dark background */
     position: fixed; /* Ensure it sits at the very top */
     top: 0;
     width: 100%; /* Ensure it spans the full width */
